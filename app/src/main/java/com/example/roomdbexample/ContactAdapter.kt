@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ContactAdapter(private val contacts: List<Contact>) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+class ContactAdapter(private var contacts: List<Contact>) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_contact, parent, false)
@@ -21,6 +21,11 @@ class ContactAdapter(private val contacts: List<Contact>) : RecyclerView.Adapter
 
     override fun getItemCount(): Int {
         return contacts.size
+    }
+
+    fun updateContacts(sortedContacts: List<Contact>) {
+        contacts = sortedContacts
+        notifyDataSetChanged()
     }
 
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
